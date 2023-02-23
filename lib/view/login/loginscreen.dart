@@ -8,12 +8,10 @@ import 'widgets/mytextfield.dart';
 import 'widgets/signinbutton.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  void signUserIn() {}
+
 
   @override
   Widget build(BuildContext context) {

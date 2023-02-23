@@ -1,17 +1,16 @@
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/core/const/constants.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../widgets/signinbutton.dart';
+
+import '../../core/colors/colors.dart';
+import '../../core/const/constants.dart';
 import '../login/loginscreen.dart';
 import '../login/widgets/mytextfield.dart';
+import '../login/widgets/signinbutton.dart';
 
 class RegisterNow extends StatelessWidget {
   RegisterNow({super.key});
-
-  final signupUsernameController = TextEditingController();
-  final signupPasswordController = TextEditingController();
-  final signupEmailController = TextEditingController();
 
   void signUserIn() {}
 
@@ -87,7 +86,7 @@ class RegisterNow extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                     GestureDetector(
+                    GestureDetector(
                       onTap: () => Get.to(() => LoginScreen()),
                       child: const Text(
                         'Sign In Now',
