@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "933062366054",
+    "project_id": "brewapp-task",
+    "storage_bucket": "brewapp-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933062366054:android:87a812f42ef010a2ac2ea7",
+        "android_client_info": {
+          "package_name": "com.example.brewapp_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933062366054-6t55q70fcua1odk853nrh2il0jjp6akq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz7nhYwtNsl3SSU2NAxz4NycyXsYqGYkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933062366054-6t55q70fcua1odk853nrh2il0jjp6akq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
