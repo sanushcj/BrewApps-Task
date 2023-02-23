@@ -8,23 +8,28 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-gotoHome();
+    gotoHome();
 
     double heightof = MediaQuery.of(context).size.height;
     double widthof = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
-        color: premiumYellow,
+        color: premiumcolor,
         height: heightof,
         width: widthof,
-        child: const Center(child: Text('BrewAPPS TASK',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),),
+        child: const Center(
+          child: Text(
+            'BrewAPPS TASK',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+          ),
+        ),
       ),
     );
   }
-  gotoHome()async{
-   await Future.delayed(const Duration(seconds: 5));
-  await  Get.to(()=> const LoginScreen());
+
+  gotoHome() async {
+    await Future.delayed(const Duration(seconds: 1));
+    await Get.to(() =>  LoginScreen());
   }
 }
