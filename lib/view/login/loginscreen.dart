@@ -67,9 +67,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 25),
-                MyButton(
-                  onTap: signUserIn,
-                ),
+                SignInButton(onTap: () => signUserIn(),),
                 rrheight50,
                 rrheight50,
                 rrheight50,
@@ -81,8 +79,8 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    InkWell(
-                      onTap: () => Get.to(() => const SignUpScreen()),
+                    GestureDetector(
+                      onTap: () => Get.to(() => RegisterNow()),
                       child: const Text(
                         'Register now',
                         style: TextStyle(

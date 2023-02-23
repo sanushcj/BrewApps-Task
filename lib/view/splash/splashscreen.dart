@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
   }
 
   gotoHome() async {
-    await Future.delayed(const Duration(seconds: 1));
-    await Get.to(() =>  LoginScreen());
+    await Future.delayed(const Duration(seconds:4 ));
+    await Get.offAll(() =>  LoginScreen());
   }
 }
