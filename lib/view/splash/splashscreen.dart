@@ -1,4 +1,6 @@
+import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
 import 'package:brewapp_task/core/colors/colors.dart';
+import 'package:brewapp_task/view/home/myhome.dart';
 import 'package:brewapp_task/view/login/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +31,8 @@ class SplashScreen extends StatelessWidget {
   }
 
   gotoHome() async {
-    await Future.delayed(const Duration(seconds:4 ));
-    await Get.offAll(() =>  LoginScreen());
+    final checkUser = AuthenticationRepo.instance.appUser;
+    await Future.delayed(const Duration(seconds:3 ));
+     checkUser != null ? const MyhomePage() :Get.offAll(() =>  LoginScreen());
   }
 }

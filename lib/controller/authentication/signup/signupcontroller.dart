@@ -1,3 +1,4 @@
+import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,7 @@ static SignUpController get instance => Get.find();
   final TextEditingController  signupEmailController = TextEditingController();
 
 void registerUser({required String email,required String pass}){
-
+AuthenticationRepo.instance.createUserWithEmailAndPassword(signupEmailController.text.trim(), signupPasswordController.text.trim());
 }
 
 
