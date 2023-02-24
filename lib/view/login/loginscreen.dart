@@ -4,14 +4,14 @@ import 'package:brewapp_task/view/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/authentication/loginandsignup.dart';
 import 'widgets/mytextfield.dart';
 import 'widgets/signinbutton.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+   LoginScreen({super.key});
 
-
-
+AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +41,13 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 MyTextField(
-                  controller: usernameController,
+                  controller:authController.loginusernameController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
-                  controller: passwordController,
+                  controller: authController.loginpasswordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 25),
-                SignInButton(onTap: () => signUserIn(),),
+                SignInButton(onTap: () => authController.signUserIn(),),
                 rrheight50,
                 rrheight50,
                 rrheight50,

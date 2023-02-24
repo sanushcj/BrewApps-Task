@@ -1,5 +1,6 @@
 
 
+import 'package:brewapp_task/controller/authentication/loginandsignup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +13,7 @@ import '../login/widgets/signinbutton.dart';
 class RegisterNow extends StatelessWidget {
   RegisterNow({super.key});
 
-  void signUserIn() {}
-
+AuthController authController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,19 +42,19 @@ class RegisterNow extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 MyTextField(
-                  controller: signupUsernameController,
+                  controller: authController.signupUsernameController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
                 rrheight10,
                 MyTextField(
-                  controller: signupEmailController,
+                  controller: authController.signupEmailController,
                   hintText: 'email',
                   obscureText: true,
                 ),
                 rrheight10,
                 MyTextField(
-                  controller: signupPasswordController,
+                  controller: authController.signupPasswordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
@@ -73,7 +73,7 @@ class RegisterNow extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 SignInButton(
-                  onTap: () => signUserIn(),
+                  onTap: () => authController.signUserIn(),
                 ),
                 rrheight50,
                 rrheight50,
