@@ -8,9 +8,10 @@ import '../widgets/mytextfield.dart';
 import '../widgets/signinbutton.dart';
 
 class LoginScreen extends StatelessWidget {
-    LoginScreen({super.key});
+  LoginScreen({super.key});
 
-final LoginController _controller = Get.put(LoginController());
+  final LoginController _controller = Get.put(LoginController());
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +40,40 @@ final LoginController _controller = Get.put(LoginController());
                   ),
                 ),
                 const SizedBox(height: 25),
-                MyTextField(
-                  controller:_controller.loginusernameController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: _controller.loginpasswordController,
-                  hintText: 'Password',
-                  obscureText: true,
+                Form(
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'please Enter your Email';
+                          }
+                          if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                            return 'please Enter Valid Email';
+                          }
+                          return null;
+                        },
+                        controller: _controller.loginusernameController,
+                        hintText: 'Username',
+                        obscureText: false,
+                      ),
+                      const SizedBox(height: 10),
+                      MyTextField(
+                        validator: (value) {
+                          if (value!.length < 5) {
+                            return 'Password or email is incorrect';
+                          }
+                          return null;
+                        },
+                        controller: _controller.loginpasswordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -64,7 +89,14 @@ final LoginController _controller = Get.put(LoginController());
                   ),
                 ),
                 const SizedBox(height: 25),
-                SignInButton(onTap: () => _controller.signInuser(),),
+                SignInButton(onTap: () {
+                  if (_formkey.currentState!.validate()) {
+                    _controller.signInuser(
+                        email: _controller.loginusernameController.text.trim(),
+                        password:
+                            _controller.loginpasswordController.text.trim());
+                  }
+                }),
                 rrheight50,
                 rrheight50,
                 rrheight50,

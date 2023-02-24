@@ -16,7 +16,7 @@ class BrewApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return  GetMaterialApp(
     home: SplashScreen(),
     debugShowCheckedModeBanner: false,
     );

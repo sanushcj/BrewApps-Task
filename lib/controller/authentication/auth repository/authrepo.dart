@@ -2,8 +2,7 @@ import 'package:brewapp_task/view/home/myhome.dart';
 import 'package:brewapp_task/view/login/loginscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
-import 'failures/signup_failure.dart';
+import 'failures/signup_in_failure.dart';
 
 class AuthenticationRepo extends GetxController {
   static AuthenticationRepo get instance => Get.find();
@@ -28,16 +27,27 @@ Future<String?> createUserWithEmailAndPassword(String email, String password) as
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       appUser.value != null ? Get.offAll(() =>  const MyhomePage()) : Get.to(() =>  LoginScreen());
     } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      return ex.message;
+      final err = SignUpandInWithEmailAndPasswordFailure.code(e.code);
+      return err.message;
     } catch (_) {
-      const ex = SignUpWithEmailAndPasswordFailure();
-      return ex.message;
+      const err = SignUpandInWithEmailAndPasswordFailure();
+      return err.message;
     }
     return null;
   }
 
-
+  Future<String?> loginWithEmailAndPassword(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      final err = SignUpandInWithEmailAndPasswordFailure.code(e.code);
+      return err.message;
+    } catch (_) {
+      const err = SignUpandInWithEmailAndPasswordFailure();
+      return err.message;
+    }
+    return null;
+  }
   
 
   Future<void> logout() async => await _auth.signOut();

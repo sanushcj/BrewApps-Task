@@ -2,16 +2,18 @@ import 'package:brewapp_task/controller/authentication/auth%20repository/authrep
 import 'package:brewapp_task/core/colors/colors.dart';
 import 'package:brewapp_task/view/home/myhome.dart';
 import 'package:brewapp_task/view/login/loginscreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  SplashScreen({super.key});
+  RxBool loading = false.obs;
 
   @override
   Widget build(BuildContext context) {
     gotoHome();
-
     double heightof = MediaQuery.of(context).size.height;
     double widthof = MediaQuery.of(context).size.height;
 
@@ -20,10 +22,23 @@ class SplashScreen extends StatelessWidget {
         color: premiumcolor,
         height: heightof,
         width: widthof,
-        child: const Center(
-          child: Text(
-            'BrewAPPS TASK',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+        child: Center(
+          child: Column(
+            children: [
+              const Text(
+                'BrewAPPS TASK',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+              ),
+              Obx(
+                () => Visibility(
+                    visible: loading.value,
+                    child: const SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: CupertinoActivityIndicator(),
+                    )),
+              )
+            ],
           ),
         ),
       ),
@@ -31,8 +46,7 @@ class SplashScreen extends StatelessWidget {
   }
 
   gotoHome() async {
-    final checkUser = AuthenticationRepo.instance.appUser;
-    await Future.delayed(const Duration(seconds:3 ));
-     checkUser != null ? const MyhomePage() :Get.offAll(() =>  LoginScreen());
+    loading.value = true;
+    await Future.delayed(const Duration(seconds: 3));
   }
 }
