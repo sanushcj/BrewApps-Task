@@ -41,22 +41,29 @@ SignUpController controller = Get.put(SignUpController());
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 25),
-                MyTextField(
-                  controller: controller.signupUsernameController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
-                rrheight10,
-                MyTextField(
-                  controller: controller.signupEmailController,
-                  hintText: 'email',
-                  obscureText: true,
-                ),
-                rrheight10,
-                MyTextField(
-                  controller: controller.signupPasswordController,
-                  hintText: 'Password',
-                  obscureText: true,
+                Form(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      MyTextField(
+                        controller: controller.signupUsernameController,
+                        hintText: 'Username',
+                        obscureText: false,
+                      ),
+                      rrheight10,
+                      MyTextField(
+                        controller: controller.signupEmailController,
+                        hintText: 'email',
+                        obscureText: true,
+                      ),
+                      rrheight10,
+                      MyTextField(
+                        controller: controller.signupPasswordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                      ),
+                    ],
+                  ),
                 ),
                 rrheight10,
                 Padding(
