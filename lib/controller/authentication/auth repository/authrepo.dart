@@ -9,13 +9,13 @@ class AuthenticationRepo extends GetxController {
   static AuthenticationRepo get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  late final Rx<User?> appUser;
 
   @override
   void onReady() {
-    firebaseUser = Rx<User?>(_auth.currentUser);
-    firebaseUser.bindStream(_auth.userChanges());
-    ever(firebaseUser, initialScreen);
+    appUser = Rx<User?>(_auth.currentUser);
+    appUser.bindStream(_auth.userChanges());
+    ever(appUser, initialScreen);
     super.onReady();
   }
 
@@ -26,7 +26,7 @@ class AuthenticationRepo extends GetxController {
 Future<String?> createUserWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value != null ? Get.offAll(() =>  const MyhomePage()) : Get.to(() =>  LoginScreen());
+      appUser.value != null ? Get.offAll(() =>  const MyhomePage()) : Get.to(() =>  LoginScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       return ex.message;
@@ -36,6 +36,12 @@ Future<String?> createUserWithEmailAndPassword(String email, String password) as
     }
     return null;
   }
+
+
+  
+
+  Future<void> logout() async => await _auth.signOut();
+
 
 }
 
