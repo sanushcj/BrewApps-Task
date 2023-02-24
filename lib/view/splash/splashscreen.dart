@@ -17,28 +17,17 @@ class SplashScreen extends StatelessWidget {
     double heightof = MediaQuery.of(context).size.height;
     double widthof = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Container(
-        color: premiumcolor,
-        height: heightof,
-        width: widthof,
-        child: Center(
-          child: Column(
-            children: [
-              const Text(
-                'BrewAPPS TASK',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
-              ),
-              Obx(
-                () => Visibility(
-                    visible: loading.value,
-                    child: const SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: CupertinoActivityIndicator(),
-                    )),
-              )
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          color: premiumcolor,
+          height: heightof,
+          width: widthof,
+          child: const Center(
+            child: Text(
+              'BrewAPPS TASK',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+            ),
           ),
         ),
       ),
@@ -46,7 +35,5 @@ class SplashScreen extends StatelessWidget {
   }
 
   gotoHome() async {
-    loading.value = true;
-    await Future.delayed(const Duration(seconds: 3));
-  }
+    loading.value = true; }
 }

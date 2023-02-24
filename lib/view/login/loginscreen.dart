@@ -33,10 +33,10 @@ class LoginScreen extends StatelessWidget {
                     )),
                 rrheight50,
                 Text(
-                  'Welcome back 🤩 Sign In Fast ',
+                  'Welcome back 🤩  ',
                   style: TextStyle(
                     color: Colors.grey[700],
-                    fontSize: 16,
+                    fontSize: 35,fontWeight: FontWeight.bold
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                           if (!RegExp(
                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                               .hasMatch(value)) {
-                            return 'please Enter Valid Email';
+                            return 'please enter valid email';
                           }
                           return null;
                         },
@@ -63,7 +63,10 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       MyTextField(
                         validator: (value) {
-                          if (value!.length < 5) {
+                            if (value!.isEmpty) {
+                            return 'Please enter your Password';
+                          }
+                          if (value.isNotEmpty) {
                             return 'Password or email is incorrect';
                           }
                           return null;

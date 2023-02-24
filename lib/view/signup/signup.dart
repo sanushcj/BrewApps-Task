@@ -93,7 +93,7 @@ class RegisterNow extends StatelessWidget {
                           if (value!.length < 5) {
                             return 'Enter a strong password';
                           }
-                          if (value != controller.signupPasswordController) {
+                          if (value != controller.signupPasswordController.text) {
                             return "Password must be same as above";
                           }
                           return null;
