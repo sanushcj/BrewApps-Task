@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 import '../../core/colors/colors.dart';
 import '../../core/const/constants.dart';
 import '../login/loginscreen.dart';
-import '../login/widgets/mytextfield.dart';
-import '../login/widgets/signinbutton.dart';
+import '../widgets/mytextfield.dart';
+import '../widgets/signinbutton.dart';
 
 class RegisterNow extends StatelessWidget {
   RegisterNow({super.key});
+
+final _formKey = GlobalKey<FormState>(); 
 
 SignUpController controller = Get.put(SignUpController());
   @override
@@ -43,6 +45,7 @@ SignUpController controller = Get.put(SignUpController());
                 const SizedBox(height: 25),
                 Form(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  key: _formKey,
                   child: Column(
                     children: [
                       MyTextField(
@@ -80,7 +83,11 @@ SignUpController controller = Get.put(SignUpController());
                 ),
                 const SizedBox(height: 25),
                 SignInButton(
-                  onTap: () => controller.registerUser(email: controller.signupEmailController.text.trim(),pass: controller.signupPasswordController.text.trim()),
+                  onTap:() {
+                    if (_formKey.currentState!.validate()) {
+                      controller.registerUser(email: controller.signupEmailController.text.trim(),pass: controller.signupPasswordController.text.trim());
+                    }
+                  }, 
                 ),
                 rrheight50,
                 rrheight50,

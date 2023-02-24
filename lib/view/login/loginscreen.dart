@@ -1,17 +1,16 @@
+import 'package:brewapp_task/controller/authentication/login/logincontroller.dart';
 import 'package:brewapp_task/core/colors/colors.dart';
 import 'package:brewapp_task/core/const/constants.dart';
 import 'package:brewapp_task/view/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../controller/authentication/loginandsignup.dart';
-import 'widgets/mytextfield.dart';
-import 'widgets/signinbutton.dart';
+import '../widgets/mytextfield.dart';
+import '../widgets/signinbutton.dart';
 
 class LoginScreen extends StatelessWidget {
-   LoginScreen({super.key});
+    LoginScreen({super.key});
 
-AuthController authController = Get.put(AuthController());
+final LoginController _controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +40,13 @@ AuthController authController = Get.put(AuthController());
                 ),
                 const SizedBox(height: 25),
                 MyTextField(
-                  controller:authController.loginusernameController,
+                  controller:_controller.loginusernameController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
-                  controller: authController.loginpasswordController,
+                  controller: _controller.loginpasswordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
@@ -65,7 +64,7 @@ AuthController authController = Get.put(AuthController());
                   ),
                 ),
                 const SizedBox(height: 25),
-                SignInButton(onTap: () => authController.signUserIn(),),
+                SignInButton(onTap: () => _controller.signInuser(),),
                 rrheight50,
                 rrheight50,
                 rrheight50,

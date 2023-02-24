@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class LoginController extends GetxController {
   
 
-
+signInuser(){}
 
 
   final TextEditingController loginusernameController = TextEditingController();
