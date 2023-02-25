@@ -4,6 +4,7 @@ import 'package:brewapp_task/core/const/constants.dart';
 import 'package:brewapp_task/view/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../forgotpass/forgotpass.dart';
 import '../widgets/mytextfield.dart';
 import '../widgets/signinbutton.dart';
 
@@ -24,13 +25,15 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 rrheight50,
-                SizedBox(
+                const SizedBox(
                     height: 100,
                     width: 200,
-                    child: Image.asset(
-                      'assets/imgs/cropped-Logo1-156x80.png',
-                      fit: BoxFit.fill,
-                    )),
+                    child: Icon(Icons.military_tech,size: 100,),
+                    // child: Image.asset(
+                    //   'assets/imgs/cropped-Logo1-156x80.png',
+                    //   fit: BoxFit.fill,
+                    // )
+                    ),
                 rrheight50,
                 Text(
                   'Welcome back 🤩  ',
@@ -57,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                           return null;
                         },
                         controller: _controller.loginusernameController,
-                        hintText: 'Username',
+                        hintText: 'email',
                         obscureText: false,
                       ),
                       const SizedBox(height: 10),
@@ -84,15 +87,19 @@ class LoginScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
+                      GestureDetector(
+                  onTap: () => Get.to(()=>  ForgotPasswordPage()),
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.blue[600]),
+                        ),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 25),
-                SignInButton(onTap: () {
+                SignInButton(colorbutton: const Color.fromARGB(255, 149, 117, 205),title: 'Log In',
+                  onTap: () {
                   if (_formkey.currentState!.validate()) {
                     _controller.signInuser(
                         email: _controller.loginusernameController.text.trim(),

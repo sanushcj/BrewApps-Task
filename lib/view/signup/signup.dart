@@ -108,7 +108,7 @@ class RegisterNow extends StatelessWidget {
                 rrheight10,
                 rrheight10,
                 const SizedBox(height: 25),
-                SignInButton(
+                SignInButton(colorbutton: Color.fromARGB(255, 149, 117, 205),title: 'Sign Up',
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
                       controller.registerUser(

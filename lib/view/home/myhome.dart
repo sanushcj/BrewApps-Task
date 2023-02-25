@@ -2,7 +2,10 @@ import 'dart:ui';
 import 'package:brewapp_task/controller/home/homescreen.dart';
 import 'package:brewapp_task/controller/search/searchscreencontroller.dart';
 import 'package:brewapp_task/core/colors/colors.dart';
+import 'package:brewapp_task/core/const/constants.dart';
 import 'package:brewapp_task/view/home/widgets/beautifulcard.dart';
+import 'package:brewapp_task/view/logout/logout.dart';
+import 'package:brewapp_task/view/search/searchdelegate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,12 +69,9 @@ class _MyhomePageState extends State<MyhomePage>
     super.dispose();
   }
 
-  var cupertinoController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     AllPhotosController controller = Get.put(AllPhotosController());
-    SearchPageController searchController = Get.put(SearchPageController());
     // ignore: no_leading_underscores_for_local_identifiers
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -100,9 +100,10 @@ class _MyhomePageState extends State<MyhomePage>
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   icon:
-                      Icon(Icons.settings, color: Colors.white.withOpacity(.7)),
+                      Icon(Icons.people, color: Colors.white.withOpacity(.7)),
                   onPressed: () {
                     HapticFeedback.lightImpact();
+                    Get.to(()=>LogOutScreen());
                   },
                 ),
               ],
@@ -118,12 +119,24 @@ class _MyhomePageState extends State<MyhomePage>
 
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-                height: 50,
-                child: CupertinoSearchTextField(
-                  controller: cupertinoController,
-                  onSubmitted:  searchController.getSearchresults,
-                )),
+            child:  Center(
+          child: GestureDetector(onTap: () => Get.to(()=> const MySearchPage()),
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Row(mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+                children: [Icon(Icons.search) ,rrwidth20,Text('Search your Image')],
+              )
+            
+                  ),
+          ),
+      ),
           ),
           Expanded(
             child: Padding(
@@ -138,12 +151,18 @@ class _MyhomePageState extends State<MyhomePage>
                             crossAxisCount: 2,
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 20),
-                    itemBuilder: (context, index) =>
-                    CardWidgetImg(url: searchController.AllsearchResult[index].regular, hdurl: searchController.AllsearchResult[index].regular)
-            
-                   ,
-                    itemCount:searchController.AllsearchResult.length
-                      ),
+                    itemBuilder: 
+                         (context, index) =>
+                            //  for (var i = 0; i < count; i++) {
+
+                            CardWidgetImg(
+                                hdurl: controller
+                                    .listofRandomPhotos[index].urls.regular,
+                                url: controller
+                                    .listofRandomPhotos[index].urls.small),
+                       
+                    itemCount:  controller
+                                    .listofRandomPhotos.length),
               ),
             ),
           )
@@ -151,7 +170,5 @@ class _MyhomePageState extends State<MyhomePage>
       ),
     );
   }
-  
- 
 // margin: EdgeInsets.fromLTRB(_w / 25, _w / 25, _w / 25, 0),
 }
