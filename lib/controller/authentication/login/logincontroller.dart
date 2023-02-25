@@ -15,5 +15,7 @@ class LoginController extends GetxController {
 
   signInuser({required String email, required String password}) {
     AuthenticationRepo.instance.loginWithEmailAndPassword(email, password);
+    loginusernameController.clear();
+    loginpasswordController.clear();
   }
 }
