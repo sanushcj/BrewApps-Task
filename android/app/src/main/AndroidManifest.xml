@@ -2,7 +2,7 @@
     package="com.example.brewapp_task">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="brewapp_task"
+        android:label="BrewApp_task"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
