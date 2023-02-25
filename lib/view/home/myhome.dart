@@ -1,9 +1,7 @@
 import 'dart:ui';
-
-import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
 import 'package:brewapp_task/controller/home/homescreen.dart';
+import 'package:brewapp_task/core/colors/colors.dart';
 import 'package:brewapp_task/view/home/widgets/beautifulcard.dart';
-import 'package:brewapp_task/view/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,11 +65,11 @@ class _MyhomePageState extends State<MyhomePage>
     super.dispose();
   }
 
+  var cupertinoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
     AllPhotosController controller = Get.put(AllPhotosController());
-    controller.getphotos();
     // ignore: no_leading_underscores_for_local_identifiers
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -103,14 +101,7 @@ class _MyhomePageState extends State<MyhomePage>
                       Icon(Icons.settings, color: Colors.white.withOpacity(.7)),
                   onPressed: () {
                     HapticFeedback.lightImpact();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return RouteWhereYouGo2();
-                        },
-                      ),
-                    );
+                  
                   },
                 ),
               ],
@@ -119,28 +110,37 @@ class _MyhomePageState extends State<MyhomePage>
           ),
         ),
       ),
-      backgroundColor: const Color(0xff2A40CE),
+      backgroundColor: premiumcolor,
       body: Column(
         children: [
           // SizedBox(height: _w / 13),/
 
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SizedBox(height: 50, child: CupertinoSearchTextField()),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+                height: 50,
+                child: CupertinoSearchTextField(
+                  controller: cupertinoController,
+                  onSubmitted: controller.getSearchresults,
+                )),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemBuilder: (context, index) =>  CardWidgetImg(indexoftheImg: index),
-                itemCount: controller.listofRandomPhotos.length,
+              child: Obx(
+                () => GridView.builder(
+                    physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20),
+                    itemBuilder: (context, index) => CardWidgetImg(
+                        url: controller.listofRandomPhotos[index].urls.small
+                            .toString()),
+                    itemCount: controller.listofRandomPhotos.length),
               ),
             ),
           )
@@ -151,26 +151,3 @@ class _MyhomePageState extends State<MyhomePage>
 // margin: EdgeInsets.fromLTRB(_w / 25, _w / 25, _w / 25, 0),
 }
 
-class RouteWhereYouGo2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 50,
-        centerTitle: true,
-        shadowColor: Colors.black.withOpacity(.5),
-        title: Text('EXAMPLE  PAGE',
-            style: TextStyle(
-                color: Colors.black.withOpacity(.7),
-                fontWeight: FontWeight.w600,
-                letterSpacing: 1)),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black.withOpacity(.8)),
-          onPressed: () => Navigator.maybePop(context),
-        ),
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-      ),
-    );
-  }
-}

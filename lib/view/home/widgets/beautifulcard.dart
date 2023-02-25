@@ -1,5 +1,6 @@
 import 'package:brewapp_task/controller/home/homescreen.dart';
 import 'package:brewapp_task/view/home/myhome.dart';
+import 'package:brewapp_task/view/open/fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,10 +8,10 @@ import 'package:get/get.dart';
 class CardWidgetImg extends StatelessWidget {
   const CardWidgetImg({
     super.key,
-    required this.indexoftheImg,
+    required this.url,
   });
 
-  final int indexoftheImg;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CardWidgetImg extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         HapticFeedback.lightImpact();
-        Get.to(() => RouteWhereYouGo2());
+        Get.to(() => FullScreenPage(hdImg: url,));
       },
       child: Container(
         height: _w / 2,
@@ -30,8 +31,7 @@ class CardWidgetImg extends StatelessWidget {
             color: Colors.white.withOpacity(.1),
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
-                image: NetworkImage(AllPhotosController
-                    .instance.listofRandomPhotos[indexoftheImg].urls.full.toString()),
+                image: NetworkImage(url),
                 fit: BoxFit.cover)),
       ),
     );
