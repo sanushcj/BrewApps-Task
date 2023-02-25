@@ -1,47 +1,73 @@
+// To parse this JSON data, do
+//
+//     final searchRepo = searchRepoFromJson(jsonString);
+
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+// SearchRepo searchRepoFromJson(String str) =>
+//     SearchRepo.fromJson(json.decode(str));
 
-SearchPhotos searchPhotosFromJson(String str) =>
-    SearchPhotos.fromJson(json.decode(str));
+// String searchRepoToJson(SearchRepo data) => json.encode(data.toJson());
 
-String searchPhotosToJson(SearchPhotos data) => json.encode(data.toJson());
+// class SearchRepo {
+//   SearchRepo({
+//     required this.results,
+//   });
 
-class SearchPhotos {
-  SearchPhotos({
-    required this.results,
-  });
+//   List<Result> results;
 
-  List<Result> results;
+//   factory SearchRepo.fromJson(Map<String, dynamic> json) => SearchRepo(
+//         results:
+//             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+//       );
 
-  factory SearchPhotos.fromJson(Map<String, dynamic> json) => SearchPhotos(
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "results": List<dynamic>.from(results.map((x) => x.toJson())),
+//       };
+// }
 
 class Result {
   Result({
-    this.description,
-    required this.previewPhotos,
+    required this.id,
+
+    // ignore: non_constant_identifier_names
+    required this.PreviewPhotoss,
   });
 
-  dynamic description;
-  List<PreviewPhoto> previewPhotos;
+  String id;
+
+  // ignore: non_constant_identifier_names
+  List<PreviewPhotos> PreviewPhotoss;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-        description: json["description"],
-        previewPhotos: List<PreviewPhoto>.from(
-            json["preview_photos"].map((x) => PreviewPhoto.fromJson(x))),
+        id: json["id"],
+        PreviewPhotoss: List<PreviewPhotos>.from(
+            json["preview_photos"].map((x) => PreviewPhotos.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "preview_photos":
-            List<dynamic>.from(previewPhotos.map((x) => x.toJson())),
+            List<dynamic>.from(PreviewPhotoss.map((x) => x.toJson())),
+      };
+}
+// To parse this JSON data, do
+//
+//     final previewPhotos = previewPhotosFromJson(jsonString);
+
+class PreviewPhotos {
+  PreviewPhotos({
+    required this.urls,
+  });
+
+  Urls urls;
+
+  factory PreviewPhotos.fromJson(Map<String, dynamic> json) => PreviewPhotos(
+        urls: Urls.fromJson(json["urls"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "urls": urls.toJson(),
       };
 }
 
@@ -78,21 +104,5 @@ class Urls {
         "small": small,
         "thumb": thumb,
         "small_s3": smallS3,
-      };
-}
-
-class PreviewPhoto {
-  PreviewPhoto({
-    required this.urls,
-  });
-
-  Urls urls;
-
-  factory PreviewPhoto.fromJson(Map<String, dynamic> json) => PreviewPhoto(
-        urls: Urls.fromJson(json["urls"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "urls": urls.toJson(),
       };
 }

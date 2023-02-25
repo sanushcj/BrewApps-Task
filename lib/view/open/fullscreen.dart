@@ -13,7 +13,7 @@ class FullScreenPage extends StatelessWidget {
         elevation: 50,
         centerTitle: true,
         shadowColor: Colors.black.withOpacity(.5),
-        title: Text('EXAMPLE  PAGE',
+        title: Text('BrewApps ❤️',
             style: TextStyle(
                 color: Colors.black.withOpacity(.7),
                 fontWeight: FontWeight.w600,
@@ -29,7 +29,7 @@ class FullScreenPage extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         decoration:
-            BoxDecoration(image: DecorationImage(image: NetworkImage(hdImg))),
+            BoxDecoration(image: DecorationImage(image: NetworkImage(hdImg),fit: BoxFit.cover)),
       ),
     );
   }

@@ -8,10 +8,12 @@ import 'package:get/get.dart';
 class CardWidgetImg extends StatelessWidget {
   const CardWidgetImg({
     super.key,
-    required this.url,
+    required this.url, required this.hdurl,
   });
 
   final String url;
+    final String hdurl;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class CardWidgetImg extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         HapticFeedback.lightImpact();
-        Get.to(() => FullScreenPage(hdImg: url,));
+        Get.to(() => FullScreenPage(hdImg: hdurl,));
       },
       child: Container(
         height: _w / 2,

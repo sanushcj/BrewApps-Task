@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:brewapp_task/controller/home/homescreen.dart';
+import 'package:brewapp_task/controller/search/searchscreencontroller.dart';
 import 'package:brewapp_task/core/colors/colors.dart';
 import 'package:brewapp_task/view/home/widgets/beautifulcard.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,6 +71,7 @@ class _MyhomePageState extends State<MyhomePage>
   @override
   Widget build(BuildContext context) {
     AllPhotosController controller = Get.put(AllPhotosController());
+    SearchPageController searchController = Get.put(SearchPageController());
     // ignore: no_leading_underscores_for_local_identifiers
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -101,7 +103,6 @@ class _MyhomePageState extends State<MyhomePage>
                       Icon(Icons.settings, color: Colors.white.withOpacity(.7)),
                   onPressed: () {
                     HapticFeedback.lightImpact();
-                  
                   },
                 ),
               ],
@@ -121,7 +122,7 @@ class _MyhomePageState extends State<MyhomePage>
                 height: 50,
                 child: CupertinoSearchTextField(
                   controller: cupertinoController,
-                  onSubmitted: controller.getSearchresults,
+                  onSubmitted:  searchController.getSearchresults,
                 )),
           ),
           Expanded(
@@ -137,10 +138,12 @@ class _MyhomePageState extends State<MyhomePage>
                             crossAxisCount: 2,
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 20),
-                    itemBuilder: (context, index) => CardWidgetImg(
-                        url: controller.listofRandomPhotos[index].urls.small
-                            .toString()),
-                    itemCount: controller.listofRandomPhotos.length),
+                    itemBuilder: (context, index) =>
+                    CardWidgetImg(url: searchController.AllsearchResult[index].regular, hdurl: searchController.AllsearchResult[index].regular)
+            
+                   ,
+                    itemCount:searchController.AllsearchResult.length
+                      ),
               ),
             ),
           )
@@ -148,6 +151,7 @@ class _MyhomePageState extends State<MyhomePage>
       ),
     );
   }
+  
+ 
 // margin: EdgeInsets.fromLTRB(_w / 25, _w / 25, _w / 25, 0),
 }
-
