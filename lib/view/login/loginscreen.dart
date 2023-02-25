@@ -69,9 +69,7 @@ class LoginScreen extends StatelessWidget {
                             if (value!.isEmpty) {
                             return 'Please enter your Password';
                           }
-                          if (value.isNotEmpty) {
-                            return 'Password or email is incorrect';
-                          }
+                         
                           return null;
                         },
                         controller: _controller.loginpasswordController,
