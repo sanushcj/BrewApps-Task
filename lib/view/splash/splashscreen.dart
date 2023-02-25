@@ -1,11 +1,6 @@
-import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/view/home/myhome.dart';
-import 'package:brewapp_task/view/login/loginscreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../core/colors/colors.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
@@ -13,9 +8,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    gotoHome();
-    double heightof = MediaQuery.of(context).size.height;
-    double widthof = MediaQuery.of(context).size.height;
+    // gotoHome();
+  final  double heightof = MediaQuery.of(context).size.height;
+   final double widthof = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
@@ -34,6 +29,6 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  gotoHome() async {
-    loading.value = true; }
+  // gotoHome() async {
+  //   loading.value = true; }
 }

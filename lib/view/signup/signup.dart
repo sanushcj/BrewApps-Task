@@ -1,7 +1,6 @@
-import 'package:brewapp_task/controller/authentication/signup/signupcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../controller/authentication/signup/signupcontroller.dart';
 import '../../core/colors/colors.dart';
 import '../../core/const/constants.dart';
 import '../login/loginscreen.dart';
@@ -11,7 +10,7 @@ import '../widgets/signinbutton.dart';
 class RegisterNow extends StatelessWidget {
   RegisterNow({super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   SignUpController controller = Get.put(SignUpController());
   @override
@@ -23,7 +22,7 @@ class RegisterNow extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 rrheight50,
                 SizedBox(
                     height: 100,
@@ -45,9 +44,9 @@ class RegisterNow extends StatelessWidget {
                   autovalidateMode: AutovalidateMode.disabled,
                   key: _formKey,
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'please Enter your Good name';
                           }
@@ -59,7 +58,7 @@ class RegisterNow extends StatelessWidget {
                       ),
                       rrheight10,
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'please Enter your Email';
                           }
@@ -76,7 +75,7 @@ class RegisterNow extends StatelessWidget {
                       ),
                       rrheight10,
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value!.length < 5) {
                             return 'Enter a strong password';
                           }
@@ -89,12 +88,13 @@ class RegisterNow extends StatelessWidget {
                       rrheight10,
                       //confirm pass
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value!.length < 5) {
                             return 'Enter a strong password';
                           }
-                          if (value != controller.signupPasswordController.text) {
-                            return "Password must be same as above";
+                          if (value !=
+                              controller.signupPasswordController.text) {
+                            return 'Password must be same as above';
                           }
                           return null;
                         },
@@ -108,7 +108,9 @@ class RegisterNow extends StatelessWidget {
                 rrheight10,
                 rrheight10,
                 const SizedBox(height: 25),
-                SignInButton(colorbutton: Color.fromARGB(255, 149, 117, 205),title: 'Sign Up',
+                SignInButton(
+                  colorbutton: const Color.fromARGB(255, 149, 117, 205),
+                  title: 'Sign Up',
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
                       controller.registerUser(
@@ -121,7 +123,7 @@ class RegisterNow extends StatelessWidget {
                 rrheight50,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'Already Have an account?',
                       style: TextStyle(color: Colors.grey[700]),

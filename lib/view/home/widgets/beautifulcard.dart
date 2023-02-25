@@ -1,9 +1,7 @@
-import 'package:brewapp_task/controller/home/homescreen.dart';
-import 'package:brewapp_task/view/home/myhome.dart';
-import 'package:brewapp_task/view/open/fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../../open/fullscreen.dart';
 
 class CardWidgetImg extends StatelessWidget {
   const CardWidgetImg({
@@ -17,7 +15,7 @@ class CardWidgetImg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _w = MediaQuery.of(context).size.height;
+   final double w = MediaQuery.of(context).size.height;
     return InkWell(
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
@@ -26,8 +24,8 @@ class CardWidgetImg extends StatelessWidget {
         Get.to(() => FullScreenPage(hdImg: hdurl,));
       },
       child: Container(
-        height: _w / 2,
-        width: _w / 2.28,
+        height: w / 2,
+        width: w / 2.28,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(.1),

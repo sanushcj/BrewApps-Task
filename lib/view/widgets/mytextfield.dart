@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MyTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final bool obscureText;
-  final String? Function(String? value) validator;
 
   const MyTextField({
     super.key,
@@ -14,6 +10,10 @@ class MyTextField extends StatelessWidget {
     required this.obscureText,
     required this.validator,
   });
+  final TextEditingController controller;
+  final String hintText;
+  final bool obscureText;
+  final String? Function(String? value) validator;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +25,11 @@ class MyTextField extends StatelessWidget {
           obscureText: obscureText,
           decoration: InputDecoration(
               errorBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
                   borderSide: BorderSide(
-                    width: 1,
                     color: Colors.red,
                   )),
               focusedErrorBorder: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
                 borderSide: BorderSide(
-                  width: 1,
                   color: Color.fromARGB(255, 54, 60, 244),
                 ),
               ),

@@ -1,10 +1,10 @@
-import 'package:brewapp_task/controller/authentication/login/logincontroller.dart';
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/core/const/constants.dart';
-import 'package:brewapp_task/view/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controller/authentication/login/logincontroller.dart';
+import '../../core/colors/colors.dart';
+import '../../core/const/constants.dart';
 import '../forgotpass/forgotpass.dart';
+import '../signup/signup.dart';
 import '../widgets/mytextfield.dart';
 import '../widgets/signinbutton.dart';
 
@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final LoginController _controller = Get.put(LoginController());
-  final _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children:<Widget> [
                 rrheight50,
                 const SizedBox(
                     height: 100,
@@ -46,9 +46,9 @@ class LoginScreen extends StatelessWidget {
                 Form(
                   key: _formkey,
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'please Enter your Email';
                           }
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       MyTextField(
-                        validator: (value) {
+                        validator: (String? value) {
                             if (value!.isEmpty) {
                             return 'Please enter your Password';
                           }
@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: <Widget>[
                       GestureDetector(
                   onTap: () => Get.to(()=>  ForgotPasswordPage()),
                         child: Text(
@@ -112,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                 rrheight50,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'Not a member?',
                       style: TextStyle(color: Colors.grey[700]),

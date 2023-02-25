@@ -1,16 +1,15 @@
-import 'package:brewapp_task/controller/authentication/forgotpass/forgotpasswordcontroller.dart';
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/core/const/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../controller/authentication/forgotpass/forgotpasswordcontroller.dart';
+import '../../core/colors/colors.dart';
+import '../../core/const/constants.dart';
 import '../widgets/mytextfield.dart';
 import '../widgets/signinbutton.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({super.key});
-  ForgotPasswordController _controller = Get.put(ForgotPasswordController());
-  final _myformkey = GlobalKey<FormState>();
+  final ForgotPasswordController _controller = Get.put(ForgotPasswordController());
+  final GlobalKey<FormState> _myformkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +20,14 @@ class ForgotPasswordPage extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           const Text('Enter your Email Address',
               style: TextStyle(color: premiumBlack, fontSize: 20)),
           rrheight20,
-          Form(key: _myformkey,
+          Form(
+            key: _myformkey,
             child: MyTextField(
-              validator: (value) {
+              validator: (String? value) {
                 if (value!.isEmpty) {
                   return 'please Enter your Email';
                 }

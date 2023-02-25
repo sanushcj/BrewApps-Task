@@ -1,5 +1,4 @@
 class SignUpandInWithEmailAndPasswordFailure {
-  final String message;
 
   const SignUpandInWithEmailAndPasswordFailure(
       [this.message = 'Unknown Error Please Check your Connection']);
@@ -26,4 +25,5 @@ class SignUpandInWithEmailAndPasswordFailure {
         return const SignUpandInWithEmailAndPasswordFailure();
     }
   }
+  final String message;
 }

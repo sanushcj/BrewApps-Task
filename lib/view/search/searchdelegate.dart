@@ -1,29 +1,14 @@
 import 'dart:ui';
-import 'package:brewapp_task/controller/home/homescreen.dart';
-import 'package:brewapp_task/controller/search/searchscreencontroller.dart';
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/view/home/widgets/beautifulcard.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../../controller/search/searchscreencontroller.dart';
+import '../../core/colors/colors.dart';
+import '../home/widgets/beautifulcard.dart';
 
-// class MySearchPage extends StatelessWidget {
-//   const MyhomePage({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return  SafeArea(child: Scaffold(
-//       body: Column(
-//         children: [
-//           const Center(child: SizedBox(width:double.infinity,height: 80, child: CupertinoTextField()),),
-//           ElevatedButton(onPressed:() =>  AuthenticationRepo.instance.logout(), child: const Text('logout'))
-//         ],
-//       ),
-
-//     ));
-//   }
-// }
 
 class MySearchPage extends StatefulWidget {
   const MySearchPage({super.key});
@@ -66,15 +51,14 @@ class _MySearchPageState extends State<MySearchPage>
     super.dispose();
   }
 
-  var cupertinoController = TextEditingController().obs;
+  Rx<TextEditingController> cupertinoController = TextEditingController().obs;
 
   @override
   Widget build(BuildContext context) {
-    SearchPageController searchController = Get.put(SearchPageController());
+   final SearchPageController searchController = Get.put(SearchPageController());
     // ignore: no_leading_underscores_for_local_identifiers
-    double _w = MediaQuery.of(context).size.width;
+   final double _w = MediaQuery.of(context).size.width;
     return Scaffold(
-      extendBodyBehindAppBar: false,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, kToolbarHeight),
         child: ClipRRect(
@@ -100,7 +84,7 @@ class _MySearchPageState extends State<MySearchPage>
       ),
       backgroundColor: premiumcolor,
       body: Column(
-        children: [
+        children: <Widget> [
           // SizedBox(height: _w / 13),/
 
           Padding(
@@ -128,7 +112,7 @@ class _MySearchPageState extends State<MySearchPage>
                             mainAxisSpacing: 20),
 
                     //  }
-                    itemBuilder: (context, index) => CardWidgetImg(
+                    itemBuilder: (BuildContext context, int index) => CardWidgetImg(
                           hdurl: searchController.searchResult[index]
                               .PreviewPhotoss[0].urls.regular,
                           url: searchController

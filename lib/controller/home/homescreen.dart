@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:brewapp_task/controller/home/api_endpoints.dart';
-import 'package:http/http.dart' as http;
-import 'package:brewapp_task/model/allphotos.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import '../../model/allphotos.dart';
+import 'api_endpoints.dart';
 
 class AllPhotosController extends GetxController {
   static AllPhotosController get instance => Get.find();
@@ -15,16 +15,16 @@ class AllPhotosController extends GetxController {
 
   RxList<AllPhotos> listofRandomPhotos = <AllPhotos>[].obs;
 
-  getphotos() async {
-    var allPhotos =
+  Future<void>getphotos() async {
+  const  String allPhotos =
         'https://api.unsplash.com/photos?per_page=35&client_id=$apiendpoint';
-    var imgReady = await http.get(Uri.parse(allPhotos));
+   final http.Response imgReady = await http.get(Uri.parse(allPhotos));
     try {
       if (imgReady.statusCode == 200) {
-        List<dynamic> photos = jsonDecode(imgReady.body);
+     final   List<dynamic> photos = jsonDecode(imgReady.body);
 
         listofRandomPhotos.value =
-            photos.map((item) => AllPhotos.fromJson(item)).toList();
+            photos.map((dynamic item) => AllPhotos.fromJson(item)).toList();
       }
     } catch (e) {
       Get.snackbar('Sorry an Error Occured', '$e');

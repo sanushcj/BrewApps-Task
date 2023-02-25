@@ -1,9 +1,10 @@
-import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:ui';
+
+import '../../controller/authentication/auth%20repository/authrepo.dart';
 
 class LogOutScreen extends StatefulWidget {
+  const LogOutScreen({super.key});
+
   @override
   _LogOutScreenState createState() => _LogOutScreenState();
 }
@@ -20,7 +21,7 @@ class _LogOutScreenState extends State<LogOutScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
 
     _animation = Tween<double>(begin: 0, end: 1)
@@ -45,21 +46,21 @@ class _LogOutScreenState extends State<LogOutScreen>
 
   @override
   Widget build(BuildContext context) {
-    double _w = MediaQuery.of(context).size.width;
+   final double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        children: [
+        children:<Widget> [
           /// ListView
           ListView(
             physics:
-                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-            children: [
+                const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            children:<Widget> [
               Padding(
-                padding: EdgeInsets.fromLTRB(_w / 17, _w / 20, 0, _w / 10),
+                padding: EdgeInsets.fromLTRB(w / 17, w / 20, 0, w / 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'BrewApps ❤️',
                       style: TextStyle(
@@ -68,7 +69,7 @@ class _LogOutScreenState extends State<LogOutScreen>
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(height: _w / 35),
+                    SizedBox(height: w / 35),
                     Text(
                       'Keep Smiling have a nice day!',
                       style: TextStyle(
@@ -81,15 +82,14 @@ class _LogOutScreenState extends State<LogOutScreen>
                   ],
                 ),
               ),
-              SizedBox(height: _w / 20),
+              SizedBox(height: w / 20),
             ],
           ),
 
           /// SETTING ICON
           Align(
-            alignment: Alignment.center,
             child: Padding(
-                padding: EdgeInsets.fromLTRB(0, _w / 9.5, _w / 15, 0),
+                padding: EdgeInsets.fromLTRB(0, w / 9.5, w / 15, 0),
                 child: Container(
                     width: 150,
                     height: 80,

@@ -1,6 +1,6 @@
-import 'package:brewapp_task/controller/authentication/auth%20repository/authrepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../auth%20repository/authrepo.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();

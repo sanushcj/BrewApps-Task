@@ -1,6 +1,6 @@
-import 'package:brewapp_task/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../core/colors/colors.dart';
 
 class FullScreenPage extends StatelessWidget {
   const FullScreenPage({super.key, required this.hdImg});

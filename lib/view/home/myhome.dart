@@ -1,32 +1,14 @@
 import 'dart:ui';
-import 'package:brewapp_task/controller/home/homescreen.dart';
-import 'package:brewapp_task/controller/search/searchscreencontroller.dart';
-import 'package:brewapp_task/core/colors/colors.dart';
-import 'package:brewapp_task/core/const/constants.dart';
-import 'package:brewapp_task/view/home/widgets/beautifulcard.dart';
-import 'package:brewapp_task/view/logout/logout.dart';
-import 'package:brewapp_task/view/search/searchdelegate.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-// class MyhomePage extends StatelessWidget {
-//   const MyhomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return  SafeArea(child: Scaffold(
-//       body: Column(
-//         children: [
-//           const Center(child: SizedBox(width:double.infinity,height: 80, child: CupertinoTextField()),),
-//           ElevatedButton(onPressed:() =>  AuthenticationRepo.instance.logout(), child: const Text('logout'))
-//         ],
-//       ),
-
-//     ));
-//   }
-// }
+import '../../controller/home/homescreen.dart';
+import '../../core/colors/colors.dart';
+import '../../core/const/constants.dart';
+import '../logout/logout.dart';
+import '../search/searchdelegate.dart';
+import 'widgets/beautifulcard.dart';
 
 class MyhomePage extends StatefulWidget {
   const MyhomePage({super.key});
@@ -71,11 +53,10 @@ class _MyhomePageState extends State<MyhomePage>
 
   @override
   Widget build(BuildContext context) {
-    AllPhotosController controller = Get.put(AllPhotosController());
+   final AllPhotosController controller = Get.put(AllPhotosController());
     // ignore: no_leading_underscores_for_local_identifiers
-    double _w = MediaQuery.of(context).size.width;
+   final double _w = MediaQuery.of(context).size.width;
     return Scaffold(
-      extendBodyBehindAppBar: false,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, kToolbarHeight),
         child: ClipRRect(
@@ -94,16 +75,15 @@ class _MyhomePageState extends State<MyhomePage>
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              actions: [
+              actions: <Widget>[
                 IconButton(
                   tooltip: 'Settings',
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  icon:
-                      Icon(Icons.people, color: Colors.white.withOpacity(.7)),
+                  icon: Icon(Icons.people, color: Colors.white.withOpacity(.7)),
                   onPressed: () {
                     HapticFeedback.lightImpact();
-                    Get.to(()=>LogOutScreen());
+                    Get.to(() => LogOutScreen());
                   },
                 ),
               ],
@@ -114,29 +94,31 @@ class _MyhomePageState extends State<MyhomePage>
       ),
       backgroundColor: premiumcolor,
       body: Column(
-        children: [
+        children: <Widget>[
           // SizedBox(height: _w / 13),/
 
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:  Center(
-          child: GestureDetector(onTap: () => Get.to(()=> const MySearchPage()),
-            child: Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10),
+            child: Center(
+              child: GestureDetector(
+                onTap: () => Get.to(() => const MySearchPage()),
+                child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      children: const <Widget>[
+                        Icon(Icons.search),
+                        rrwidth20,
+                        Text('Search your Image')
+                      ],
+                    )),
               ),
-              padding: const EdgeInsets.all(10),
-              child: Row(mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Icon(Icons.search) ,rrwidth20,Text('Search your Image')],
-              )
-            
-                  ),
-          ),
-      ),
+            ),
           ),
           Expanded(
             child: Padding(
@@ -151,18 +133,15 @@ class _MyhomePageState extends State<MyhomePage>
                             crossAxisCount: 2,
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 20),
-                    itemBuilder: 
-                         (context, index) =>
-                            //  for (var i = 0; i < count; i++) {
+                    itemBuilder: (BuildContext context, int index) =>
+                        //  for (var i = 0; i < count; i++) {
 
-                            CardWidgetImg(
-                                hdurl: controller
-                                    .listofRandomPhotos[index].urls.regular,
-                                url: controller
-                                    .listofRandomPhotos[index].urls.small),
-                       
-                    itemCount:  controller
-                                    .listofRandomPhotos.length),
+                        CardWidgetImg(
+                            hdurl: controller
+                                .listofRandomPhotos[index].urls.regular,
+                            url: controller
+                                .listofRandomPhotos[index].urls.small),
+                    itemCount: controller.listofRandomPhotos.length),
               ),
             ),
           )
